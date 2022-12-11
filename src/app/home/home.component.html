@@ -1,0 +1,29 @@
+<div
+*ngIf="homePage$ | async as home"
+style="background-image: url({{home.data.attributes.posterImage.large}});"
+class="absolute top-0 h-[200vh] w-full bg-cover">
+<mat-card class="md:fixed flex-column justify-between w-[90vw] md:w-[768px] lg:w-[864px] p-4 md:p-12 mt-24 md:mt-60 ml-4 lg:ml-12  bg-black bg-opacity-40">
+  <mat-card-header>
+    <mat-card-title class="text-2xl md:text-4xl text-white font-poppins">{{home.data.attributes.canonicalTitle}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p class="text-gray-300 text-sm md:text-md lg:text-lg font-poppins mt-4">{{home.data.attributes.description}}</p>
+  </mat-card-content>
+  <mat-card-footer class="flex-column md:flex justify-between items-center mt-4 pl-4 space-y-4">
+    <div class="flex items-center space-x-8">
+      <span class="text-white lg:text-lg italic">Rating: {{home.data.attributes.averageRating}} | 100</span>
+      <mat-progress-spinner
+      color="accent"
+      class="h-14 w-14"
+      strokeWidth="15"
+      [value]="home.data.attributes.averageRating">
+      </mat-progress-spinner>
+    </div>
+    <button (click)="getStreamingLink()"class="flex justify-start pl-2 items-center bg-primary-500 h-12 w-44 space-x-2 rounded-md hover:scale-110 hover:bg-primary-400">
+      <mat-icon class="text-white">play_arrow</mat-icon>
+      <span class="drop-shadow-md text-white text-xl font-poppins font-bold">Watch Now</span>
+    </button>
+  </mat-card-footer>
+</mat-card>
+</div>
+
