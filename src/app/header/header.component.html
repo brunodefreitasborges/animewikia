@@ -7,15 +7,17 @@
   <div class="h-auto flex justify-center items-center">
     <span class="font-poppins text-primary-500 text-2xl lg:text-4xl">Anime Central</span>
   </div>
-  <nav class="hidden md:block h-auto mr-8 lg:mr-12 flex justify-end items-center space-x-8 lg:space-x-12">
+  <nav class="hidden md:block h-auto mr-8 lg:mr-12 flex justify-end items-start space-x-8 lg:space-x-12">
     <mat-icon
     class="text-white text-center w-8 h-8 text-2xl lg:text-4xl hover:cursor-pointer"
     (click)="toggleInputField()">search</mat-icon>
     <mat-icon class="text-white w-8 h-8 text-2xl lg:text-4xl">notifications_none</mat-icon>
-    <a href="" class="font-poppins text-lg lg:text-xl text-white">Login</a>
+    <a href="" class="font-poppins text-lg lg:text-xl text-white ">Login</a>
   </nav>
 
-  <mat-form-field (ngSubmit)="onSubmit()" [@toggleInput] *ngIf="toggleInput" [appearance]="'outline'" color="accent" class="absolute top-4 right-72">
+  <mat-form-field (ngSubmit)="onSubmit()" [@toggleInput] *ngIf="toggleInput"
+  [appearance]="'outline'" color="accent"
+  class="absolute top-16 right-[20vw] bg-black h-14 bg-opacity-30 lg:top-4 lg:right-72 lg:bg-transparent">
     <input matInput  [formControl]="queryField"  type="text" [(ngModel)]="value" autocomplete="off"
     class="text-white">
       <button type="submit" *ngIf="value" matSuffix mat-icon-button (click)="onSubmit()">

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { AnimeApiResponse, QueryApiResponse, StreamingLinkApiResponse } from './api.model';
+import { AnimeApiResponse, QueryApiResponse, StreamingLinksApiResponse } from './api.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,8 @@ export class ApiService {
     return this.http.get<AnimeApiResponse>('https://kitsu.io/api/edge/anime/' + id);
   }
 
-  getStreamingLinks(id: string): Observable<StreamingLinkApiResponse> {
-    return this.http.get<StreamingLinkApiResponse>('https://kitsu.io/api/edge/anime/' + id + '/streaming-links');
+  getStreamingLinks(id: string): Observable<StreamingLinksApiResponse> {
+    return this.http.get<StreamingLinksApiResponse>('https://kitsu.io/api/edge/anime/' + id + '/streaming-links');
   }
 
   searchAnime(query: string): Observable<AnimeApiResponse> {

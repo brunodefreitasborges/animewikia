@@ -36,13 +36,16 @@ export interface QueryApiResponse {
   ]
 }
 
-export interface StreamingLinkApiResponse {
+export interface StreamingLinksApiResponse {
   data:[
     {
       attributes: {
         url: string
       }
     }
-  ]
+  ],
+  links: {
+    first: string,
+  }
 
 }

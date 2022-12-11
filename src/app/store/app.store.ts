@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { Observable, switchMap } from 'rxjs';
-import { AnimeApiResponse, StreamingLinkApiResponse } from '../integration/api.model';
+import { AnimeApiResponse, StreamingLinksApiResponse } from '../integration/api.model';
 import { ApiService } from '../integration/api.service';
 
 export interface AppState {
   currentAnime: AnimeApiResponse
-  streamingLink?: StreamingLinkApiResponse
+  streamingLink?: StreamingLinksApiResponse
 }
 
 const initialState: AppState = {
@@ -54,11 +54,14 @@ export class AppStore extends ComponentStore<AppState>  {
     )
   });
 
-  fetchStreamingLink = this.effect((streamingLinkFetch$: Observable<void>) => {
-    return streamingLinkFetch$.pipe(
-      switchMap(() => this.apiService.getStreamingLinks('41370').pipe(
+  fetchStreamingLink = this.effect((id$: Observable<string>) => {
+    return id$.pipe(
+      switchMap((id: string) => this.apiService.getStreamingLinks(id).pipe(
           tapResponse(
-            (streamingLink: StreamingLinkApiResponse) => this.setStreamingLink(streamingLink),
+            (streamingLink: StreamingLinksApiResponse) => {
+            this.setStreamingLink(streamingLink)
+            }
+            ,
             (error: HttpErrorResponse) => console.log(error)
           )
         )
@@ -89,6 +92,6 @@ export class AppStore extends ComponentStore<AppState>  {
   );
 
   setStreamingLink = this.updater(
-    (state, streamingLink: StreamingLinkApiResponse) => ({...state, streamingLink})
+    (state, streamingLink: StreamingLinksApiResponse) => ({...state, streamingLink})
   );
 }
