@@ -6,8 +6,11 @@ export interface AnimeApiResponse {
         description: string,
         canonicalTitle: string,
         averageRating: string,
+        coverImage: {
+          original: string
+        }
         posterImage: {
-          large: string
+          original: string
         }
       }
     }
@@ -22,8 +25,11 @@ export interface QueryApiResponse {
         description: string,
         canonicalTitle: string,
         averageRating: string,
+        coverImage: {
+          original: string
+        }
         posterImage: {
-          large: string
+          original: string
         }
       }
     }

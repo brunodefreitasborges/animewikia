@@ -1,8 +1,8 @@
 <div
 *ngIf="homePage$ | async as home"
-style="background-image: url({{home.data.attributes.posterImage.large}});"
-class="absolute top-0 h-[200vh] w-full bg-cover">
-<mat-card class="md:fixed flex-column justify-between w-[90vw] md:w-[768px] lg:w-[864px] p-4 md:p-12 mt-24 md:mt-60 ml-4 lg:ml-12  bg-black bg-opacity-40">
+style="background-image: url({{home.data.attributes.coverImage.original}});"
+class="absolute top-0 h-[100vh] w-full bg-cover">
+<mat-card class="md:fixed flex-column justify-between w-[90vw] md:w-[768px] lg:w-[864px] p-4 md:p-12 mt-24 md:mt-60 ml-4 lg:ml-12  bg-black bg-opacity-70">
   <mat-card-header>
     <mat-card-title class="text-2xl md:text-4xl text-white font-poppins">{{home.data.attributes.canonicalTitle}}</mat-card-title>
   </mat-card-header>
