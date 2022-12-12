@@ -9,7 +9,6 @@ import { MaterialModule } from './material/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CustomErrorHandlerService } from './common/custom-error-handler.service';
 
 
 
@@ -30,10 +29,6 @@ import { CustomErrorHandlerService } from './common/custom-error-handler.service
   ],
   providers: [
     AppStore,
-    {
-      provide: ErrorHandler,
-      useClass: CustomErrorHandlerService
-    }
   ],
   bootstrap: [AppComponent]
 })

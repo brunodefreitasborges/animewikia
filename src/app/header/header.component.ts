@@ -1,7 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, filter, map, Observable, tap } from 'rxjs';
 import { AppStore } from '../store/app.store';
 
 @Component({
@@ -15,7 +14,7 @@ import { AppStore } from '../store/app.store';
       })),
       state('*', style({
         opacity: 1,
-        width: '256px',
+        width: '248px'
       })),
       transition('void <=> *', animate('300ms ease-in-out'))
     ])

@@ -32,3 +32,28 @@ simple-snack-bar {
   font-family: Poppins, "Helvetica Neue", sans-serif !important;
   font-size: 26px !important;
 }
+
+.mat-mdc-text-field-wrapper {
+  max-height: 100% !important;
+}
+
+@media screen and (max-width: 640px) {
+  .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+  .mat-mdc-focus-indicator {
+    height: 32px !important;
+    width: 32px !important;
+    padding: 0 !important;
+  }
+  .mat-mdc-button-touch-target {
+    height: 32px !important;
+    width: 32px !important;
+  }
+}
+
+
+
+
+

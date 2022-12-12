@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { MediaObserver } from '@angular/flex-layout';
+import { Observable, map } from 'rxjs';
 import { AnimeApiResponse, StreamingLinksApiResponse } from '../integration/api.model';
 import { AppStore } from '../store/app.store';
 
@@ -8,21 +8,26 @@ import { AppStore } from '../store/app.store';
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
-export class HomeComponent implements OnInit, AfterViewInit {
-
+export class HomeComponent implements OnInit{
+  backgroundPoster!: boolean;
   homePage$: Observable<AnimeApiResponse | undefined> = this.store.select(state => state.currentAnime);
   streamingLink$: Observable<StreamingLinksApiResponse | undefined> = this.store.select(state => state.streamingLink);
 
-  constructor(private store: AppStore) { }
+  constructor(private store: AppStore,
+    private mediaObserver: MediaObserver,
+    ) { }
 
   ngOnInit(): void {
     this.store.fetchHomePage();
-  }
-
-  ngAfterViewInit(): void {
-    this.homePage$.subscribe((homePage: AnimeApiResponse | undefined) => {
-
-    })
+    this.mediaObserver.asObservable().pipe(
+      map(changes => changes[0])
+    ).subscribe(change => {
+      if(change.mqAlias === 'xs' || change.mqAlias === 'sm' || change.mqAlias === 'md') {
+        this.backgroundPoster = true;
+      } else {
+        this.backgroundPoster = false;
+      }
+    });
   }
 
   getStreamingLink(id: string): void {
