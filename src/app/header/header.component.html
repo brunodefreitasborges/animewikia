@@ -1,9 +1,9 @@
 <header class="fixed z-10 w-full h-36 p-4 max-sm:p-0 flex justify-between items-start bg-gradient-to-b from-black via-black">
 
-  <div class="w-52 ml-12 max-sm:ml-16">
+  <div class="w-52 ml-12">
     <img src="../../assets/logo.png" alt="Anime Wikia Logo">
   </div>
-  <nav class="hidden sm:block mt-6 h-auto lg:mr-12 flex justify-end items-start space-x-8 lg:space-x-12">
+  <nav class="mt-6 h-auto max-sm:mr-4 lg:mr-12 flex justify-end items-start max-sm:space-x-2 space-x-8 lg:space-x-12">
     <mat-icon
     class="text-white text-center w-8 h-8 text-2xl lg:text-4xl hover:cursor-pointer"
     (click)="toggleInputField()">search</mat-icon>
@@ -12,7 +12,7 @@
 
   <mat-form-field (ngSubmit)="onSubmit()" [@toggleInput] *ngIf="toggleInput"
   [appearance]="'outline'" color="accent"
-  class="absolute flex justify-between items-center max-sm:top-20 max-sm:right-[20vw] max-sm:h-10 h-14 bg-opacity-60 top-8 right-[15vw]">
+  class="absolute flex justify-between items-center max-sm:top-24 max-sm:right-[18vw] max-sm:h-10 h-14 bg-opacity-60 top-8 right-[15vw]">
     <input matInput  [formControl]="queryField"  type="text" [(ngModel)]="value" autocomplete="off"
     class="text-white w-full h-full">
     <button type="submit" *ngIf="value" matSuffix mat-icon-button (click)="onSubmit()" class="p-0 max-sm:h-6 max-sm:w-6 max-sm:mb-[12px] max-sm:mr-3">
