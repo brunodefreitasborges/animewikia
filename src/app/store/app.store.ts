@@ -105,7 +105,6 @@ export class AppStore extends ComponentStore<AppState>  {
   );
 
   setNextAnime(index: number) {
-    console.log('Store called with index: ' + index);
     const nextAnime = this.get().trendingAnimes?.data[index];
     if(nextAnime == undefined) {
       return;
@@ -116,7 +115,6 @@ export class AppStore extends ComponentStore<AppState>  {
   };
 
   setPreviousAnime(index: number) {
-    console.log('Store called with index: ' + index);
     const previousAnime = this.get().trendingAnimes?.data[index];
     if(previousAnime == undefined) {
       return;
