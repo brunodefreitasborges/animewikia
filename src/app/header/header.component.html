@@ -1,23 +1,25 @@
-<header class="fixed z-10 w-full h-36 p-4 max-sm:p-0 flex justify-between items-start bg-gradient-to-b from-black via-black">
+<nav [@loadPage] class="fixed z-10 w-[100vw] h-36 p-4 max-sm:p-0 flex justify-between items-start bg-gradient-to-b from-black via-black">
 
-  <div class="w-52 ml-12">
+  <a routerLink="/" routerLinkActive="active" class="w-52 ml-12 hover:cursor-pointer" >
     <img src="../../assets/logo.png" alt="Anime Wikia Logo">
-  </div>
-  <nav class="mt-6 h-auto max-sm:mr-4 lg:mr-12 flex justify-end items-start max-sm:space-x-2 space-x-8 lg:space-x-12">
+  </a>
+  <nav class="mt-6 h-auto max-sm:mr-4 mr-8 lg:mr-12 flex justify-center items-start max-sm:space-x-2 space-x-8 lg:space-x-12">
+
+    <mat-form-field (ngSubmit)="onSubmit()" [@toggleInput] *ngIf="toggleInput"
+    [appearance]="'outline'" color="accent"
+    class="max-sm:absolute flex justify-between items-center -mt-2 top-24 right-[18vw] max-md:h-10 h-20 md:w-64 lg:w-96  bg-opacity-60">
+      <input matInput  [formControl]="queryField"  type="text" [(ngModel)]="value" autocomplete="off"
+      class="text-white w-full h-full">
+      <button type="submit" *ngIf="value" matSuffix mat-icon-button (click)="onSubmit()" class="p-0 max-sm:h-6 max-sm:w-6 max-sm:mb-[12px] max-sm:mr-3">
+          <mat-icon class="text-white">send</mat-icon>
+      </button>
+    </mat-form-field>
     <mat-icon
-    class="text-white text-center w-8 h-8 text-2xl lg:text-4xl hover:cursor-pointer"
+    class="text-white text-center w-8 h-8 text-2xl md:text-4xl hover:cursor-pointer"
     (click)="toggleInputField()">search</mat-icon>
-    <mat-icon class="text-white w-8 h-8 text-2xl lg:text-4xl">notifications_none</mat-icon>
+    <mat-icon class="hidden max-sm:block text-white w-8 h-8 text-2xl md:text-4xl">menu</mat-icon>
+    <a routerLink="/trending" routerLinkActive="active" class="block max-sm:hidden lg:pr-8 text-white text-2xl lg:text-4xl">Trending</a>
   </nav>
 
-  <mat-form-field (ngSubmit)="onSubmit()" [@toggleInput] *ngIf="toggleInput"
-  [appearance]="'outline'" color="accent"
-  class="absolute flex justify-between items-center max-sm:top-24 max-sm:right-[18vw] max-sm:h-10 h-14 bg-opacity-60 top-8 right-[15vw]">
-    <input matInput  [formControl]="queryField"  type="text" [(ngModel)]="value" autocomplete="off"
-    class="text-white w-full h-full">
-    <button type="submit" *ngIf="value" matSuffix mat-icon-button (click)="onSubmit()" class="p-0 max-sm:h-6 max-sm:w-6 max-sm:mb-[12px] max-sm:mr-3">
-        <mat-icon class="text-white">send</mat-icon>
-    </button>
-  </mat-form-field>
 
-</header>
+</nav>

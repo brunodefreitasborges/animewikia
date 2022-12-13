@@ -9,6 +9,7 @@ import { MaterialModule } from './material/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TrendingComponent } from './trending/trending.component';
 
 
 
@@ -17,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     HeaderComponent,
     HomeComponent,
+    TrendingComponent,
   ],
   imports: [
     BrowserModule,

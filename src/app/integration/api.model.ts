@@ -16,7 +16,7 @@ export interface AnimeApiResponse {
     }
 }
 
-export interface QueryApiResponse {
+export interface AnimeArrayApiResponse {
   data: [
     {
       id: string,

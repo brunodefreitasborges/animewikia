@@ -1,18 +1,19 @@
+import { AnimeArrayApiResponse } from './../integration/api.model';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Location } from '@angular/common';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
-import { Observable, map } from 'rxjs';
+import { Observable, map, tap, of } from 'rxjs';
 import { AnimeApiResponse, StreamingLinksApiResponse } from '../integration/api.model';
 import { AppStore } from '../store/app.store';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
+  selector: 'app-trending',
+  templateUrl: './trending.component.html',
   animations: [
     trigger('loadPage', [
       state('false', style({
-        opacity: 0,
+        opacity: 1,
         transform: 'translateX(100%)'
       })),
       state('void', style({
@@ -31,10 +32,11 @@ import { AppStore } from '../store/app.store';
     ])
   ]
 })
-export class HomeComponent implements OnInit, AfterViewInit{
+export class TrendingComponent implements OnInit, AfterViewInit{
   animationTapState: boolean = false;
   backgroundPoster: boolean = true;
-  homePage$: Observable<AnimeApiResponse | undefined> = this.store.select(state => state.currentAnime);
+  currentAnime$: Observable<AnimeApiResponse | undefined> = this.store.select(state => state.currentAnime);
+  animeCounter: number = 0;
   streamingLink$: Observable<StreamingLinksApiResponse | undefined> = this.store.select(state => state.streamingLink);
 
   constructor(private store: AppStore,
@@ -42,7 +44,7 @@ export class HomeComponent implements OnInit, AfterViewInit{
     ) {}
 
   ngOnInit(): void {
-    this.store.fetchHomePage();
+    this.store.fetchTrendingAnime();
     this.mediaObserver.asObservable().pipe(
       map(changes => changes[0])
     ).subscribe(change => {
@@ -55,7 +57,7 @@ export class HomeComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit(): void {
-    this.homePage$.subscribe((homePage: AnimeApiResponse | undefined) => {
+    this.currentAnime$.subscribe((homePage: AnimeApiResponse | undefined) => {
       this.animationTapState = false;
       setTimeout(() => {
         this.animationTapState = true;
@@ -79,6 +81,19 @@ export class HomeComponent implements OnInit, AfterViewInit{
         }
         });
     }, 1000);
+  }
+
+  getNextAnime() {
+    this.animeCounter++;
+    this.store.setNextAnime(this.animeCounter);
+  }
+
+  getPreviousAnime() {
+    if(this.animeCounter === 0) {
+      return;
+    }
+    this.animeCounter--;
+    this.store.setPreviousAnime(this.animeCounter);
   }
 
 }

@@ -1,11 +1,10 @@
 <div
 [@loadPage]="animationTapState"
-*ngIf="homePage$ | async as home"
+*ngIf="currentAnime$ | async as home"
 [ngStyle]="{'background-image': backgroundPoster
 ? 'url('+home.data.attributes.posterImage.original+')'
 : 'url('+home.data.attributes.coverImage.original+')'}"
 class="absolute top-16 h-[100vh] md:h-[140vh] w-full bg-cover bg-center lg:bg-left">
-
 <mat-card class="flex-column justify-between w-[90vw] md:w-[768px] lg:w-[864px] p-4 md:p-12 mt-28 md:mt-36 ml-4 lg:ml-36  bg-black bg-opacity-70">
   <mat-card-header>
     <mat-card-title class="text-2xl md:text-4xl text-white font-poppins">{{home.data.attributes.canonicalTitle}}</mat-card-title>
@@ -29,5 +28,15 @@ class="absolute top-16 h-[100vh] md:h-[140vh] w-full bg-cover bg-center lg:bg-le
     </button>
   </mat-card-footer>
 </mat-card>
+
+<div>
+  <mat-icon
+  (click)="getPreviousAnime()"
+  class="absolute text-primary-500 top-[40vh] max-sm:text-4xl max-sm:w-12 max-sm:h-12 max-sm:ml-2 w-24 h-24 xl:w-40 xl:h-40 -ml-8 xl:-ml-12 text-9xl xl:text-[212px] hover:cursor-pointer">keyboard_arrow_left</mat-icon>
+  <mat-icon
+  (click)="getNextAnime()"
+  class="absolute top-[40vh] right-0 text-primary-500 max-sm:text-4xl max-sm:w-12 max-sm:h-12 max-sm:mr-0 w-24 h-24 xl:w-40 xl:h-40 text-9xl xl:text-[212px] hover:cursor-pointer">keyboard_arrow_right</mat-icon>
+</div>
+
 </div>
 

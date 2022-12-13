@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -17,6 +18,17 @@ import { AppStore } from '../store/app.store';
         width: '248px'
       })),
       transition('void <=> *', animate('300ms ease-in-out'))
+    ]),
+    trigger('loadPage', [
+      state('void', style({
+        opacity: 0,
+        transform: 'translateY(100%)'
+      })),
+      state('*', style({
+        opacity: 1,
+        transform: 'translateY(0)'
+      })),
+      transition('void <=> *', animate('600ms ease'))
     ])
   ]
 })
@@ -25,7 +37,7 @@ export class HeaderComponent {
   value = '';
   queryField = new FormControl();
 
-  constructor(private store: AppStore) {}
+  constructor(private store: AppStore, private router: Router) {}
 
   toggleInputField(): void {
     this.toggleInput = !this.toggleInput;
@@ -33,6 +45,10 @@ export class HeaderComponent {
 
   onSubmit() {
     this.store.fetchAnime(this.queryField.value);
+  }
+
+  home() {
+    this.router.navigate(['/']);
   }
 
 }

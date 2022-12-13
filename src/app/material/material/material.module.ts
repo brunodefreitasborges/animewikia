@@ -7,6 +7,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 const MaterialComponents = [
   MatIconModule,
@@ -15,7 +16,8 @@ const MaterialComponents = [
   MatProgressSpinnerModule,
   MatInputModule,
   MatAutocompleteModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatToolbarModule
 ]
 
 
