@@ -1,9 +1,7 @@
-import { AnimeArrayApiResponse } from './../integration/api.model';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Location } from '@angular/common';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
-import { Observable, map, tap, of } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { AnimeApiResponse, StreamingLinksApiResponse } from '../integration/api.model';
 import { AppStore } from '../store/app.store';
 
@@ -22,7 +20,6 @@ import { AppStore } from '../store/app.store';
       state('true', style({
         opacity: 1,
         transform: 'translateX(0%)'
-
       })),
       state('*', style({
         opacity: 1,

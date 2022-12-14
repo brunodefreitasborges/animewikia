@@ -44,11 +44,18 @@ export class HeaderComponent {
   }
 
   onSubmit() {
+    this.home();
     this.store.fetchAnime(this.queryField.value);
   }
 
   home() {
     this.router.navigate(['/']);
+  }
+
+  onKeyPress(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.onSubmit();
+    }
   }
 
 }
