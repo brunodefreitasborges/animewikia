@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { filter, map, Observable, Subscription } from 'rxjs';
 import { AnimeApiResponse, StreamingLinksApiResponse } from '../integration/api.model';
+import { MediaService } from '../services/media.service';
+import { DeviceSize } from '../services/shared.types';
 import { AppStore } from '../store/app.store';
 
 @Component({
@@ -9,21 +10,35 @@ import { AppStore } from '../store/app.store';
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit, AfterViewInit {
-
+  device!: DeviceSize;
   homePage$: Observable<AnimeApiResponse | undefined> = this.store.select(state => state.currentAnime);
   streamingLink$: Observable<StreamingLinksApiResponse | undefined> = this.store.select(state => state.streamingLink);
+  subscription: Subscription = new Subscription();
 
-  constructor(private store: AppStore) { }
+  constructor(private store: AppStore, private readonly _mediaChangeService: MediaService) {
+    this._mediaChangeService.init();
+   }
 
   ngOnInit(): void {
     this.store.fetchHomePage();
+    this.initializeDevicePage();
   }
 
   ngAfterViewInit(): void {
-    this.homePage$.subscribe((homePage: AnimeApiResponse | undefined) => {
-
-    })
   }
+
+  initializeDevicePage(): void {
+    setTimeout( () => {
+        this.subscription = this._mediaChangeService.deviceSize$
+            .pipe(
+                filter(value => !!value),
+                map(value => value as DeviceSize)
+            )
+            .subscribe((device) => {
+                this.device = device;
+            });
+    });
+}
 
   getStreamingLink(id: string): void {
     this.store.fetchStreamingLink(id);

@@ -26,7 +26,7 @@ export interface QueryApiResponse {
         canonicalTitle: string,
         averageRating: string,
         coverImage: {
-          original: string
+          original: string,
         }
         posterImage: {
           original: string
